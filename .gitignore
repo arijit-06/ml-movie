@@ -1,0 +1,25 @@
+# Virtual environment
+movie_env/
+
+# Installation and help files
+INSTALLATION_GUIDE.txt
+ML_Explained_Simple.txt
+NETWORK_FIX.txt
+
+# Core files included: recommender.py, mlmodel.ipynb, requirements.txt, README.md
+
+# Dataset files (too large for GitHub)
+*.csv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
