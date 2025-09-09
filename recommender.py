@@ -4,7 +4,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import ast
 
-# Load and preprocess data
 def load_data():
     movies = pd.read_csv('tmdb_5000_movies.csv')
     credits = pd.read_csv('tmdb_5000_credits.csv')
@@ -24,7 +23,6 @@ def preprocess_data(movies):
     movies['keywords'] = movies['keywords'].apply(extract_names)
     movies['cast'] = movies['cast'].apply(lambda x: extract_names(x)[:3])
     
-    # Create tags
     movies['tags'] = (
         movies['overview'] + ' ' +
         movies['genres'].apply(lambda x: ' '.join(x)) + ' ' +
@@ -34,7 +32,6 @@ def preprocess_data(movies):
     
     return movies
 
-# Build recommendation system
 def build_recommender(movies):
     tfidf = TfidfVectorizer(max_features=5000, stop_words='english')
     tfidf_matrix = tfidf.fit_transform(movies['tags'])
@@ -51,14 +48,11 @@ def recommend(movie_title, movies, similarity_matrix):
     except:
         return f"Movie '{movie_title}' not found"
 
-# Main execution
 if __name__ == "__main__":
-    # Load and process data
     movies = load_data()
     movies = preprocess_data(movies)
     similarity_matrix = build_recommender(movies)
     
-    # Demo
     test_movies = ['The Dark Knight', 'Inception', 'Avatar']
     
     for movie in test_movies:
